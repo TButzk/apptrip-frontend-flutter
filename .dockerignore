@@ -1,0 +1,11 @@
+.dart_tool
+.idea
+.vscode
+.env
+*.log
+android/.gradle
+android/app/build
+ios/Flutter/ephemeral
+build/*
+!build/web
+!build/web/**

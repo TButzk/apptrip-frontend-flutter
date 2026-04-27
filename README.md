@@ -11,7 +11,7 @@ Cliente Flutter multiplataforma para Android, iOS e Web consumindo o backend Jav
 ## Comandos
 
 ```powershell
-cd frontend-flutter
+cd apptrip-frontend-flutter
 ..\.tools\flutter\bin\flutter.bat pub get
 ..\.tools\flutter\bin\flutter.bat analyze
 ..\.tools\flutter\bin\flutter.bat test

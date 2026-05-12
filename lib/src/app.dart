@@ -6,6 +6,7 @@ import 'screens/home_screen.dart';
 import 'services/api_client.dart';
 import 'services/auth_service.dart';
 import 'services/route_service.dart';
+import 'services/social_service.dart';
 import 'state/app_controller.dart';
 
 class AppTripFlutterApp extends StatefulWidget {
@@ -19,6 +20,7 @@ class _AppTripFlutterAppState extends State<AppTripFlutterApp> {
   late final ApiClient _apiClient;
   late final AuthService _authService;
   late final RouteService _routeService;
+  late final SocialService _socialService;
   late final AppController _controller;
 
   @override
@@ -27,6 +29,7 @@ class _AppTripFlutterAppState extends State<AppTripFlutterApp> {
     _apiClient = ApiClient(AppConfig.fromEnvironment());
     _authService = AuthService(_apiClient);
     _routeService = RouteService(_apiClient);
+    _socialService = SocialService(_apiClient);
     _controller = AppController(
       apiClient: _apiClient,
       authService: _authService,
@@ -73,6 +76,10 @@ class _AppTripFlutterAppState extends State<AppTripFlutterApp> {
       return AuthScreen(controller: _controller);
     }
 
-    return HomeScreen(controller: _controller, routeService: _routeService);
+    return HomeScreen(
+      controller: _controller,
+      routeService: _routeService,
+      socialService: _socialService,
+    );
   }
 }

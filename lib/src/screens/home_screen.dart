@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../services/route_service.dart';
+import '../services/social_service.dart';
 import '../state/app_controller.dart';
 import 'capture_route_screen.dart';
 import 'routes_list_screen.dart';
@@ -9,11 +10,13 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({
     required this.controller,
     required this.routeService,
+    required this.socialService,
     super.key,
   });
 
   final AppController controller;
   final RouteService routeService;
+  final SocialService socialService;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -30,12 +33,14 @@ class _HomeScreenState extends State<HomeScreen> {
         emptyMessage: 'Nenhuma rota publicada encontrada.',
         loadRoutes: widget.routeService.listPublishedRoutes,
         routeService: widget.routeService,
+        socialService: widget.socialService,
       ),
       RoutesListScreen(
         title: 'Minhas rotas',
         emptyMessage: 'Voce ainda nao criou rotas.',
         loadRoutes: widget.routeService.listMyRoutes,
         routeService: widget.routeService,
+        socialService: widget.socialService,
       ),
       CaptureRouteScreen(routeService: widget.routeService),
     ];

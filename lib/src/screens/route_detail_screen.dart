@@ -3,17 +3,21 @@ import 'package:flutter/material.dart';
 import '../models/place.dart';
 import '../models/route.dart';
 import '../services/route_service.dart';
+import '../services/social_service.dart';
 import '../widgets/route_map.dart';
+import 'place_social_screen.dart';
 
 class RouteDetailScreen extends StatefulWidget {
   const RouteDetailScreen({
     required this.routeId,
     required this.routeService,
+    required this.socialService,
     super.key,
   });
 
   final String routeId;
   final RouteService routeService;
+  final SocialService socialService;
 
   @override
   State<RouteDetailScreen> createState() => _RouteDetailScreenState();
@@ -86,6 +90,17 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
                     ),
                     title: Text(place.name.isEmpty ? 'Sem nome' : place.name),
                     subtitle: Text('${place.latitude}, ${place.longitude}'),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => PlaceSocialScreen(
+                            place: place,
+                            socialService: widget.socialService,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
             ],

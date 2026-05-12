@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/route.dart';
 import '../services/route_service.dart';
+import '../services/social_service.dart';
 import 'route_detail_screen.dart';
 
 typedef RouteLoader = Future<List<TripRoute>> Function({int skip, int take});
@@ -12,6 +13,7 @@ class RoutesListScreen extends StatefulWidget {
     required this.emptyMessage,
     required this.loadRoutes,
     required this.routeService,
+    required this.socialService,
     super.key,
   });
 
@@ -19,6 +21,7 @@ class RoutesListScreen extends StatefulWidget {
   final String emptyMessage;
   final RouteLoader loadRoutes;
   final RouteService routeService;
+  final SocialService socialService;
 
   @override
   State<RoutesListScreen> createState() => _RoutesListScreenState();
@@ -90,6 +93,7 @@ class _RoutesListScreenState extends State<RoutesListScreen> {
                         builder: (_) => RouteDetailScreen(
                           routeId: route.id,
                           routeService: widget.routeService,
+                          socialService: widget.socialService,
                         ),
                       ),
                     );
